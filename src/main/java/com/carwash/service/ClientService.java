@@ -24,7 +24,6 @@ public class ClientService {
 	
 	public Client create(Client client) {
 		// log.info("class: ClientService, method: create");
-		client.setStatus(ClietStatus.ACTIVE);
 		return clientRepository.save(client);
 	}
 	
@@ -46,7 +45,7 @@ public class ClientService {
 		return result;
 	}
 
-	public Client update(Long id, Client client) throws CarWashException {
+	public Client update(String id, Client client) throws CarWashException {
 		
 		Client fromDb = clientRepository.findById(id).orElse(null);
 		if (fromDb == null) {
@@ -60,7 +59,7 @@ public class ClientService {
 		return clientRepository.save(fromDb);
 	}
 	
-	public void delete(Long id) throws CarWashException {
+	public void delete(String id) throws CarWashException {
 		
 		Client fromDb = clientRepository.findById(id).orElse(null);
 		if (fromDb == null) {

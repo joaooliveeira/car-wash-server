@@ -31,12 +31,12 @@ public class ClientWs {
 	}
 	
 	@RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
-	public Client update(@PathVariable("id") Long id, @RequestBody Client client) throws CarWashException {
+	public Client update(@PathVariable("id") String id, @RequestBody Client client) throws CarWashException {
 		return clientService.update(id, client);
 	}
 	
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable("id") Long id) throws CarWashException {
+	public void delete(@PathVariable("id") String id) throws CarWashException {
 		clientService.delete(id);
 	}
 	

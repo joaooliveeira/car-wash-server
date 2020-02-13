@@ -1,5 +1,8 @@
 package com.carwash.repository;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -7,10 +10,18 @@ import org.springframework.stereotype.Repository;
 import com.carwash.model.Car;
 
 @Repository
-public interface CarRepository extends CrudRepository<Car, Long>, QuerydslPredicateExecutor<Car> {
-
-  Car getByLicensePlate(String licensePlate);
-  Car getByCardNumber(String cardNumber);
-  Car findByLicensePlateOrCardNumber(String licensePlate, String cardNumber);
+public interface CarRepository extends CrudRepository<Car, String>, QuerydslPredicateExecutor<Car> {
+	
+	Car getByLicensePlate(String licensePlate);
+	  
+	Car findByLicensePlate(String licensePlate);
+	  
+	Car getByCardNumber(String cardNumber);
+	 
+	Car findByCardNumber(String licensePlate);
+	  
+	Car findByLicensePlateOrCardNumber(String licensePlate, String cardNumber);
+	
+//	List<Car> findByStartDateAfter(Date lastUpdate);
 
 }

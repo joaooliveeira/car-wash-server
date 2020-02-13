@@ -1,14 +1,15 @@
 package com.carwash.exception;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ErrorResponse {
 
 	private String code;
 	private String message;
 	
-	
-	public ErrorResponse() {
-	}
-
 	public ErrorResponse(String message) {
 		super();
 		this.message = message;
@@ -19,23 +20,5 @@ public class ErrorResponse {
 		this.code = code;
 		this.message = message;
 	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
-	
 
 }

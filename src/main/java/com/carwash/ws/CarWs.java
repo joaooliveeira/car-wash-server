@@ -1,6 +1,10 @@
 package com.carwash.ws;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,18 +27,24 @@ public class CarWs {
 		return carService.create(car);
 	}
 	
-	@RequestMapping(value="", method = RequestMethod.GET)
-	public Car find(@RequestParam(name = "licensePlate",required = false) String licensePlate,
-						@RequestParam(name = "cardNumber",required = false) String cardNumber) {
-		return carService.findCar(licensePlate, cardNumber);
+	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	public Car update(@PathVariable("id") String id, @RequestBody Car car) throws CarWashException {
+		return carService.update(id, car);
 	}
 	
-//	@RequestMapping(value="{cardNumber}", method = RequestMethod.GET)
-//	public Car getByCardNumber(@PathVariable("cardNumber") String cardNumber) {
-//		return carService.getByCardNumber(cardNumber);
+	@RequestMapping(value="{id}", method = RequestMethod.GET)
+	public Car findById(@PathVariable("id") String id) throws CarWashException {
+		return carService.findById(id);
+	}
+	
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public Car findByLicensePlate(@RequestParam(name = "licensePlate") String licensePlate) throws CarWashException {
+		return carService.getByLicensePlate(licensePlate);
+	}
+	
+//	@RequestMapping(value="sync/{lastUpdate}", method = RequestMethod.GET)
+//	public List<Car> sync(@PathVariable("lastUpdate") Date lastUpdate) throws CarWashException {
+//		return carService.sync(lastUpdate);
 //	}
-	
-	
-	
 	
 }
