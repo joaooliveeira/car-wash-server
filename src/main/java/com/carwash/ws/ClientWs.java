@@ -20,7 +20,7 @@ public class ClientWs {
 	@Autowired
 	private ClientService clientService;
 	
-	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.PUT)
 	public Client create(@RequestBody Client client) {
 		return clientService.create(client);
 	}
@@ -28,11 +28,6 @@ public class ClientWs {
 	@RequestMapping(value = "find/{term}", method = RequestMethod.GET)
 	public List<Client> findClient(@PathVariable("term") String term) {
 		return clientService.findClient(term);
-	}
-	
-	@RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
-	public Client update(@PathVariable("id") String id, @RequestBody Client client) throws CarWashException {
-		return clientService.update(id, client);
 	}
 	
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)

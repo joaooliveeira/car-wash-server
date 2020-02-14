@@ -16,7 +16,7 @@ public class CarService {
 	@Autowired
 	private CarRepository carRepository;
 	
-	public Car create(Car car) throws CarWashException {
+	public Car create(Car car) {
 		
 		Car fromDb = findById(car.getId());
 		
@@ -24,26 +24,15 @@ public class CarService {
 			car.setLastUpdate(new Date());
 			return carRepository.save(car);
 		} else {
-			return update(fromDb.getId(), fromDb);
+			fromDb.setModel(car.getModel());
+			fromDb.setLicensePlate(car.getLicensePlate());
+			fromDb.setCardNumber(car.getCardNumber());
+			fromDb.setLastUpdate(new Date());
+			return carRepository.save(fromDb);
 		}
 	}
 	
-	public Car update(String id, Car car) throws CarWashException {
-		
-		Car fromDb = carRepository.findById(id).orElse(null);
-		if (fromDb == null) {
-			throw new CarWashException("Veículo não cadastrado");
-		}
-		
-		fromDb.setModel(car.getModel());
-		fromDb.setLicensePlate(car.getLicensePlate());
-		fromDb.setCardNumber(car.getCardNumber());
-		fromDb.setLastUpdate(new Date());
-		
-		return carRepository.save(fromDb);
-	}
-	
-	public Car findById(String id) throws CarWashException {
+	public Car findById(String id) {
 		return carRepository.findById(id).orElse(null);
 	}
 	

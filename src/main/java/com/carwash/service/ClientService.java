@@ -1,6 +1,7 @@
 package com.carwash.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,15 @@ public class ClientService {
 	private ClientRepository clientRepository;
 	
 	public Client create(Client client) {
-		// log.info("class: ClientService, method: create");
+		log.info("class: ClientService, method: create");
+		
+		client.setLastUpdate(new Date());
+		
 		return clientRepository.save(client);
+	}
+	
+	public Client findById(String id) {
+		return clientRepository.findById(id).orElse(null);
 	}
 	
 	public List<Client> findClient(String term) {
@@ -45,20 +53,6 @@ public class ClientService {
 		return result;
 	}
 
-	public Client update(String id, Client client) throws CarWashException {
-		
-		Client fromDb = clientRepository.findById(id).orElse(null);
-		if (fromDb == null) {
-			throw new CarWashException("Cliente não encontrado");
-		}
-		
-		fromDb.setName(client.getName());
-		fromDb.setPhone(client.getPhone());
-		fromDb.setEmail(client.getEmail());
-		
-		return clientRepository.save(fromDb);
-	}
-	
 	public void delete(String id) throws CarWashException {
 		
 		Client fromDb = clientRepository.findById(id).orElse(null);

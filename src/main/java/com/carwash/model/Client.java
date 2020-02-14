@@ -26,10 +26,10 @@ public class Client {
 	@Column
 	private String email;
 	
-	@Column
-	private Date lastUpdate;
-	
 	@Enumerated(EnumType.STRING)
 	private ClietStatus status;
+	
+	@Column
+	private Date lastUpdate;
 	
 }

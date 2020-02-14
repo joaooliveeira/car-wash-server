@@ -1,8 +1,5 @@
 package com.carwash.ws;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,14 +19,9 @@ public class CarWs {
 	@Autowired
 	private CarService carService;
 	
-	@RequestMapping(value="", method = RequestMethod.POST)
+	@RequestMapping(value="", method = RequestMethod.PUT)
 	public Car create(@RequestBody Car car) throws CarWashException {
 		return carService.create(car);
-	}
-	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public Car update(@PathVariable("id") String id, @RequestBody Car car) throws CarWashException {
-		return carService.update(id, car);
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.GET)
@@ -37,7 +29,7 @@ public class CarWs {
 		return carService.findById(id);
 	}
 	
-	@RequestMapping(value="", method = RequestMethod.GET)
+	@RequestMapping(value="find", method = RequestMethod.GET)
 	public Car findByLicensePlate(@RequestParam(name = "licensePlate") String licensePlate) throws CarWashException {
 		return carService.getByLicensePlate(licensePlate);
 	}
