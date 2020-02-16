@@ -17,20 +17,19 @@ import lombok.Data;
 public class Wash {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	
 	@Column
-	private Long carId;
+	private String clientId;
+	
+	@Column
+	private String clientRegister;
+	
+	@Column
+	private String carId;
 	
 	@Column
 	private String kilometrage;
-	
-	@Column
-	private Long clientId;
-	
-	@Column
-	private Long clientRegister;
 	
 	@Column
 	private String washType;
@@ -43,5 +42,8 @@ public class Wash {
 	
 	@Column
 	private Date created;
+	
+	@Column
+	private Date lastUpdate;
 	
 }

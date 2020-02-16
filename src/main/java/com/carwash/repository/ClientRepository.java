@@ -11,6 +11,5 @@ public interface ClientRepository extends CrudRepository<Client, String>, Queryd
 
   List<Client> findByName(String name);
   List<Client> findByPhone(String phone);
-  List<Client> findByEmail(String email);
   
 }

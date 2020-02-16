@@ -20,7 +20,7 @@ public class ClientWs {
 	@Autowired
 	private ClientService clientService;
 	
-	@RequestMapping(value = "", method = RequestMethod.PUT)
+	@RequestMapping(value = "create", method = RequestMethod.PUT)
 	public Client create(@RequestBody Client client) {
 		return clientService.create(client);
 	}

@@ -23,9 +23,6 @@ public class Client {
 	@Column
 	private String phone;
 	
-	@Column
-	private String email;
-	
 	@Enumerated(EnumType.STRING)
 	private ClietStatus status;
 	

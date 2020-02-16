@@ -41,8 +41,7 @@ public class ClientService {
 		
 		builder.andAnyOf (
 			qc.name.startsWithIgnoreCase(term),
-			qc.phone.startsWith(term),
-			qc.email.startsWithIgnoreCase(term));
+			qc.phone.startsWith(term));
 		
 		builder.and(qc.status.eq(ClietStatus.ACTIVE));
 		

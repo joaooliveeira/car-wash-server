@@ -16,7 +16,7 @@ public class WashWs {
 	@Autowired
 	private WashService washService;
 	
-	@RequestMapping(value="create", method=RequestMethod.POST)
+	@RequestMapping(value="create", method=RequestMethod.PUT)
 	public Wash create(@RequestBody Wash wash) {
 		return washService.create(wash);
 	}
