@@ -1,7 +1,6 @@
 package com.carwash.service;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,18 +17,11 @@ public class CarService {
 	
 	public Car create(Car car) {
 		
-		Car fromDb = findById(car.getId());
+		// Car fromDb = findById(car.getId());
 		
-		if (fromDb == null) {
-			car.setLastUpdate(new Date());
-			return carRepository.save(car);
-		} else {
-			fromDb.setModel(car.getModel());
-			fromDb.setLicensePlate(car.getLicensePlate());
-			fromDb.setCardNumber(car.getCardNumber());
-			fromDb.setLastUpdate(new Date());
-			return carRepository.save(fromDb);
-		}
+		car.setLastUpdate(new Date());
+		return carRepository.save(car);
+		
 	}
 	
 	public Car findById(String id) {

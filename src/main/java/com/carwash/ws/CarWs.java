@@ -19,7 +19,7 @@ public class CarWs {
 	@Autowired
 	private CarService carService;
 	
-	@RequestMapping(value="", method = RequestMethod.PUT)
+	@RequestMapping(value="create", method = RequestMethod.PUT)
 	public Car create(@RequestBody Car car) throws CarWashException {
 		return carService.create(car);
 	}
