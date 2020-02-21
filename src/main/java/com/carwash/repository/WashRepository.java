@@ -7,10 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.carwash.model.Wash;
 
-public interface WashRepository extends CrudRepository<Wash, Long>, QuerydslPredicateExecutor<Wash> {
+public interface WashRepository extends CrudRepository<Wash, String>, QuerydslPredicateExecutor<Wash> {
 
-  List<Wash> findByClientId(Long clientId);
-  List<Wash> findByCarId(Long carId);
+  List<Wash> findByClientId(String clientId);
+  List<Wash> findByCarId(String carId);
   List<Wash> findByClientRegister(String clientRegister);
+  Wash getById(String id);
   
 }
