@@ -1,11 +1,12 @@
 package com.carwash.ws;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carwash.exception.CarWashException;
@@ -29,9 +30,14 @@ public class CarWs {
 		return carService.findById(id);
 	}
 	
-	@RequestMapping(value="find", method = RequestMethod.GET)
-	public Car findByLicensePlate(@RequestParam(name = "licensePlate") String licensePlate) throws CarWashException {
+	@RequestMapping(value="{licensePlate}", method = RequestMethod.GET)
+	public Car findByLicensePlate(@PathVariable("licensePlate") String licensePlate) throws CarWashException {
 		return carService.getByLicensePlate(licensePlate);
+	}
+	
+	@RequestMapping(value="find/{term}", method = RequestMethod.GET)
+	public List<Car> findCar(@PathVariable("term") String term) {
+		return carService.findCar(term);
 	}
 	
 //	@RequestMapping(value="sync/{lastUpdate}", method = RequestMethod.GET)

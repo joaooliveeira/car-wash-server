@@ -3,7 +3,6 @@ package com.carwash.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.carwash.model.QWash;
 import com.carwash.model.Wash;
+import com.carwash.model.WashStatus;
 import com.carwash.repository.WashRepository;
 import com.querydsl.core.BooleanBuilder;
 
@@ -36,14 +36,10 @@ public class WashService {
 		BooleanBuilder builder = new BooleanBuilder();
 		QWash qw = QWash.wash;
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendar = Calendar.getInstance();
-		
-		calendar.setTime(formatter.parse(endDate));
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 		
 		Date fromDate = formatter.parse(startDate);
-		Date toDate = calendar.getTime();
+		Date toDate = formatter.parse(endDate);
 		
 		System.out.println("fromDate : " + fromDate);
 		System.out.println("toDate : " + toDate);
@@ -66,23 +62,18 @@ public class WashService {
 		return result;
 		
 	}
+
+	public List<Wash> getRunningWashes() {
+		return washRepository.findByStatus(WashStatus.RUNNING);
+	}
 	
-//	public List<Wash> find(WashFilter filter) throws ParseException {
+//	public List<Wash> find(String term) {
 //		
 //		BooleanBuilder builder = new BooleanBuilder();
 //		QWash qw = QWash.wash;
 //		
-//		System.out.println("fromDate: " + filter.getFromDate());
-//		System.out.println("toDate : " + filter.getToDate());
-//		System.out.println("carId: " + filter.getCarId());
+//		builder.andAnyOf(qw.)
 //		
-//		if (filter.getCarId() != null) {
-//			builder.and(qw.carId.eq(filter.getCarId()));
-//		}
-//		
-//		if (filter.getClientId() != null) {
-//			builder.and(qw.clientId.eq(filter.getClientId()));
-//		}
 //		
 //		builder.and(qw.created.between(filter.getFromDate(), filter.getToDate()));
 //		

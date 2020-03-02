@@ -37,11 +37,9 @@ public class WashWs {
 		return washService.filter(carId, clientId, fromDate, toDate);
 	}
 	
-//	@RequestMapping(value="filter", method=RequestMethod.GET)
-//	@ResponseBody
-//	public List<Wash> find(@RequestParam WashFilter filter) throws ParseException {
-//		System.out.println("washWs callded");
-//		return washService.find(filter);
-//	}
+	@RequestMapping(value="running", method=RequestMethod.GET)
+	public List<Wash> getRunningWashes() {
+		return washService.getRunningWashes();
+	}
 	
 }
