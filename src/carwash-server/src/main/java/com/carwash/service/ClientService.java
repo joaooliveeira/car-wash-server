@@ -1,5 +1,7 @@
 package com.carwash.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,9 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.carwash.exception.CarWashException;
 import com.carwash.model.Client;
-import com.carwash.model.ClietStatus;
 import com.carwash.model.QClient;
 import com.carwash.repository.ClientRepository;
 import com.querydsl.core.BooleanBuilder;
@@ -23,7 +23,7 @@ public class ClientService {
 	@Autowired
 	private ClientRepository clientRepository;
 	
-	public Client create(Client client) {
+	public Client save(Client client) {
 		log.info("class: ClientService, method: create");
 		
 		client.setLastUpdate(new Date());
@@ -35,15 +35,15 @@ public class ClientService {
 		return clientRepository.findById(id).orElse(null);
 	}
 	
-	public List<Client> findClient(String term) {
+	public List<Client> find(String term) {
+		
 		BooleanBuilder builder = new BooleanBuilder();
 		QClient qc = QClient.client;
 		
 		builder.andAnyOf (
 			qc.name.startsWithIgnoreCase(term),
-			qc.phone.startsWith(term));
-		
-		builder.and(qc.status.eq(ClietStatus.ACTIVE));
+			qc.phone.startsWith(term),
+			qc.email.startsWith(term));
 		
 		List<Client> result = new ArrayList<>();
 		
@@ -51,16 +51,22 @@ public class ClientService {
 		
 		return result;
 	}
-
-	public void delete(String id) throws CarWashException {
+	
+	public List<Client> sync(String lastSyncDate) throws ParseException {
 		
-		Client fromDb = clientRepository.findById(id).orElse(null);
-		if (fromDb == null) {
-			throw new CarWashException("Cliente não encontrado");
-		}
+		BooleanBuilder builder = new BooleanBuilder();
+		QClient qc = QClient.client;
 		
-		fromDb.setStatus(ClietStatus.DELETED);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		Date fromDate = formatter.parse(lastSyncDate);
 		
-		clientRepository.save(fromDb);
+		builder.and(qc.lastUpdate.after(fromDate));
+		
+		List<Client> result = new ArrayList<Client>();
+		
+		clientRepository.findAll(builder).forEach(result::add);
+		
+		return result;
+		
 	}
 }

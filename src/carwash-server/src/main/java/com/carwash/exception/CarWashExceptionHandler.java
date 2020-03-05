@@ -9,8 +9,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class CarWashExceptionHandler extends ResponseEntityExceptionHandler{
-
-	
 	
 	@ResponseBody
 	@ExceptionHandler(CarWashException.class)
@@ -30,17 +28,5 @@ public class CarWashExceptionHandler extends ResponseEntityExceptionHandler{
 		return response;
 		
 	}
-	
-//	@ResponseBody
-//	@ExceptionHandler(DataIntegrityViolationException.class)
-//	@ResponseStatus(code =  HttpStatus.BAD_REQUEST)
-//	ErrorResponse dataIntegrityViolationException(DataIntegrityViolationException e) {
-//		e.printStackTrace();
-//		ErrorResponse response = new ErrorResponse("Erro, por favor tente novamente");
-//		return response;
-//		
-//	}
-	
-	
 
 }

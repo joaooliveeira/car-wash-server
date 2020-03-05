@@ -9,7 +9,11 @@ import com.carwash.model.Client;
 
 public interface ClientRepository extends CrudRepository<Client, String>, QuerydslPredicateExecutor<Client> {
 
-  List<Client> findByName(String name);
-  List<Client> findByPhone(String phone);
-  
+	List<Client> findByName(String name);
+	
+	List<Client> findByPhone(String phone);
+	
+	List<Client> findByEmail(String email);
+
+	void deleteById(String id);
 }

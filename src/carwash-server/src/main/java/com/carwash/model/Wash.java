@@ -25,7 +25,7 @@ public class Wash {
 	
 	private String washType;
 	
-	private String value;
+	private Long value;
 	
 	@Enumerated(EnumType.STRING)
 	private WashStatus status;

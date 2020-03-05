@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "fe3e964d-c7d1-4136-b81b-66cb1d46811d",
+		"name": "carwash",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "car",
+			"item": [
+				{
+					"name": "car/save",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"405bbad0-5e66-11ea-8066-f168752e35mym\",\n\t\"licensePlate\": \"JBY9078\",\n\t\"model\": \"X6\",\n\t\"cardNumber\": \"\",\n\t\"lastUpdate\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}car/save",
+							"host": [
+								"{{host}}car"
+							],
+							"path": [
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "car/find/term",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}car/find/X6",
+							"host": [
+								"{{host}}car"
+							],
+							"path": [
+								"find",
+								"X6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "car/sync/date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}car/sync/2020-03-05T01:18:46.000-03:00",
+							"host": [
+								"{{host}}car"
+							],
+							"path": [
+								"sync",
+								"2020-03-05T01:18:46.000-03:00"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "client/save",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"405bbad0-5e66-11ea-8066-f168752e35mdol\",\n\t\"name\": \"Dolores Teste\",\n\t\"phone\": \"19999887766\",\n\t\"email\": \"ACTIVE\",\n\t\"lastUpdate\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}client/save",
+							"host": [
+								"{{host}}client"
+							],
+							"path": [
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "client/find/term",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}client/find/Dol",
+							"host": [
+								"{{host}}client"
+							],
+							"path": [
+								"find",
+								"Dol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "client/sync/date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}client/sync/2020-02-29T20:47:10.000-03:00",
+							"host": [
+								"{{host}}client"
+							],
+							"path": [
+								"sync",
+								"2020-02-29T20:47:10.000-03:00"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "wash",
+			"item": [
+				{
+					"name": "wash/save",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"1cf72410-5288-11ea-8cb8-bffd908e77f9\",\n\t\"clientId\": \"59ce1070-545d-11ea-820d-bb90ff052b0c\",\n\t\"clientRegister\": \"\",\n\t\"carId\": \"16b403e0-59cf-11ea-934b-f93ed1d4182b\",\n\t\"kilometrage\": \"\",\n\t\"washType\": \"Polimento\",\n\t\"value\": \"8000\",\n\t\"status\": \"RUNNING\",\n\t\"created\": \"2020-02-29T09:51:54.321-0300\",\n\t\"lastUpdate\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}wash/save",
+							"host": [
+								"{{host}}wash"
+							],
+							"path": [
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wash/filter/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}wash/filter/?carId=d8ac7e60-5a78-11ea-b199-43e6b7f4fbca&fromDate=2020-02-27T00:00:00.000-03:00&toDate=2020-03-02T23:59:59.999-03:00",
+							"host": [
+								"{{host}}wash"
+							],
+							"path": [
+								"filter",
+								""
+							],
+							"query": [
+								{
+									"key": "carId",
+									"value": "d8ac7e60-5a78-11ea-b199-43e6b7f4fbca"
+								},
+								{
+									"key": "clientId",
+									"value": "59ce1070-545d-11ea-820d-bb90ff052b0c",
+									"disabled": true
+								},
+								{
+									"key": "fromDate",
+									"value": "2020-02-27T00:00:00.000-03:00"
+								},
+								{
+									"key": "toDate",
+									"value": "2020-03-02T23:59:59.999-03:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wash/running",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}wash/running",
+							"host": [
+								"{{host}}wash"
+							],
+							"path": [
+								"running"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wash/sync/date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}wash/sync/2020-02-27T22:47:10.000-03:00?",
+							"host": [
+								"{{host}}wash"
+							],
+							"path": [
+								"sync",
+								"2020-02-27T22:47:10.000-03:00"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wash/delete/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}wash/delete/1cf72410-5288-11ea-8cb8-bffd908e77f9?",
+							"host": [
+								"{{host}}wash"
+							],
+							"path": [
+								"delete",
+								"1cf72410-5288-11ea-8cb8-bffd908e77f9"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -20,4 +20,6 @@ public interface WashRepository extends CrudRepository<Wash, String>, QuerydslPr
   
   Wash getById(String id);
   
+  void deleteById(String id);
+  
 }

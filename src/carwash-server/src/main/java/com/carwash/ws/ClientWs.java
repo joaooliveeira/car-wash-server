@@ -1,5 +1,6 @@
 package com.carwash.ws;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,19 @@ public class ClientWs {
 	@Autowired
 	private ClientService clientService;
 	
-	@RequestMapping(value = "create", method = RequestMethod.PUT)
-	public Client create(@RequestBody Client client) {
-		return clientService.create(client);
+	@RequestMapping(value = "save", method = RequestMethod.PUT)
+	public Client saveClient(@RequestBody Client client) {
+		return clientService.save(client);
 	}
 	
 	@RequestMapping(value = "find/{term}", method = RequestMethod.GET)
 	public List<Client> findClient(@PathVariable("term") String term) {
-		return clientService.findClient(term);
+		return clientService.find(term);
 	}
-	
-	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable("id") String id) throws CarWashException {
-		clientService.delete(id);
+
+	@RequestMapping(value="sync/{date}", method = RequestMethod.GET)
+	public List<Client> syncClient(@PathVariable("date") String lastSyncDate) throws ParseException {
+		return clientService.sync(lastSyncDate);
 	}
 	
 }
