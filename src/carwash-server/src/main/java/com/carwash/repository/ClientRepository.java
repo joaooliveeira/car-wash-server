@@ -15,5 +15,9 @@ public interface ClientRepository extends CrudRepository<Client, String>, Queryd
 	
 	List<Client> findByEmail(String email);
 
-	void deleteById(String id);
+	Client getByPhone(String phone);
+	
+	Client getByEmail(String email);
+	
+	
 }

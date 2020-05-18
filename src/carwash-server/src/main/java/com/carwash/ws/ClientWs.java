@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carwash.exception.CarWashException;
 import com.carwash.model.Client;
+import com.carwash.model.Wash;
 import com.carwash.service.ClientService;
 
 @RestController
@@ -30,10 +32,15 @@ public class ClientWs {
 	public List<Client> findClient(@PathVariable("term") String term) {
 		return clientService.find(term);
 	}
-
-	@RequestMapping(value="sync/{date}", method = RequestMethod.GET)
-	public List<Client> syncClient(@PathVariable("date") String lastSyncDate) throws ParseException {
-		return clientService.sync(lastSyncDate);
+	
+	@RequestMapping(value = "getByPhone/{phone}", method = RequestMethod.GET)
+	public Client getClientByPhone(@PathVariable("phone") String phone) {
+		return clientService.getByPhone(phone);
+	}
+	
+	@RequestMapping(value = "getByEmail/{email}", method = RequestMethod.GET)
+	public Client getClientByEmail(@PathVariable("email") String email) {
+		return clientService.getByEmail(email);
 	}
 	
 }

@@ -29,7 +29,4 @@ public class Client {
 	@Enumerated(EnumType.STRING)
 	private ClientStatus status;
 	
-	@Column
-	private Date lastUpdate;
-	
 }

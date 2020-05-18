@@ -25,14 +25,19 @@ public class ClientService {
 	
 	public Client save(Client client) {
 		log.info("class: ClientService, method: create");
-		
-		client.setLastUpdate(new Date());
-		
 		return clientRepository.save(client);
 	}
 	
 	public Client findById(String id) {
 		return clientRepository.findById(id).orElse(null);
+	}
+	
+	public Client getByPhone(String phone) {
+		return clientRepository.getByPhone(phone);
+	}
+	
+	public Client getByEmail(String email) {
+		return clientRepository.getByEmail(email);
 	}
 	
 	public List<Client> find(String term) {
@@ -43,7 +48,7 @@ public class ClientService {
 		builder.andAnyOf (
 			qc.name.startsWithIgnoreCase(term),
 			qc.phone.startsWith(term),
-			qc.email.startsWith(term));
+			qc.email.startsWithIgnoreCase(term));
 		
 		List<Client> result = new ArrayList<>();
 		
@@ -52,21 +57,4 @@ public class ClientService {
 		return result;
 	}
 	
-	public List<Client> sync(String lastSyncDate) throws ParseException {
-		
-		BooleanBuilder builder = new BooleanBuilder();
-		QClient qc = QClient.client;
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-		Date fromDate = formatter.parse(lastSyncDate);
-		
-		builder.and(qc.lastUpdate.after(fromDate));
-		
-		List<Client> result = new ArrayList<Client>();
-		
-		clientRepository.findAll(builder).forEach(result::add);
-		
-		return result;
-		
-	}
 }

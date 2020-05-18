@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carwash.exception.CarWashException;
 import com.carwash.model.Car;
+import com.carwash.model.Wash;
 import com.carwash.service.CarService;
 
 @RestController
@@ -31,9 +33,17 @@ public class CarWs {
 		return carService.find(term);
 	}
 	
-	@RequestMapping(value="sync/{date}", method = RequestMethod.GET)
-	public List<Car> syncCar(@PathVariable("date") String lastSyncDate) throws ParseException {
-		return carService.sync(lastSyncDate);
+	@RequestMapping(value="getByLicensePlate/{licensePlate}", method = RequestMethod.GET)
+	public Car getClientByLicensePlate(@PathVariable("licensePlate") String licensePlate) {
+		return carService.getByLicensePlate(licensePlate);
 	}
+	
+	@RequestMapping(value="find/", method=RequestMethod.GET)
+	public List<Car> findCarByLicensePlateOrCardNumber(
+			@RequestParam(name = "licensePlate", required = false) String licensePlate,
+			@RequestParam(name = "cardNumber", required = false) String cardNumber) {
+		return carService.findByLicensePlateOrCardNumber(licensePlate, cardNumber);
+	}
+	
 	
 }
