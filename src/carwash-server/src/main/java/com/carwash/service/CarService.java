@@ -41,15 +41,11 @@ public class CarService {
 	}
 
 	public Car getByLicensePlate(String licensePlate) {
-		return carRepository.getByLicensePlate(licensePlate);
+		return carRepository.getByLicensePlateIgnoreCase(licensePlate);
 	}
 
 	public List<Car> findByLicensePlate(String licensePlate) {
-		return carRepository.findByLicensePlate(licensePlate);
-	}
-
-	public List<Car> findByLicensePlateOrCardNumber(String licensePlate, String cardNumber) {
-		return carRepository.findByLicensePlateOrCardNumber(licensePlate, cardNumber);
+		return carRepository.findByLicensePlateContainingIgnoreCase(licensePlate);
 	}
 	
 }

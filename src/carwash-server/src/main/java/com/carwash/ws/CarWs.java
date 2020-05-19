@@ -39,10 +39,9 @@ public class CarWs {
 	}
 	
 	@RequestMapping(value="find/", method=RequestMethod.GET)
-	public List<Car> findCarByLicensePlateOrCardNumber(
-			@RequestParam(name = "licensePlate", required = false) String licensePlate,
-			@RequestParam(name = "cardNumber", required = false) String cardNumber) {
-		return carService.findByLicensePlateOrCardNumber(licensePlate, cardNumber);
+	public List<Car> findCarByLicensePlate(
+			@RequestParam(name = "licensePlate", required = false) String licensePlate) {
+		return carService.findByLicensePlate(licensePlate);
 	}
 	
 	
