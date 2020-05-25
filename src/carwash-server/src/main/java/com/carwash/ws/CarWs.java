@@ -1,6 +1,5 @@
 package com.carwash.ws;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.carwash.exception.CarWashException;
 import com.carwash.model.Car;
-import com.carwash.model.Wash;
 import com.carwash.service.CarService;
 
 @RestController
@@ -33,16 +31,18 @@ public class CarWs {
 		return carService.find(term);
 	}
 	
-	@RequestMapping(value="getByLicensePlate/{licensePlate}", method = RequestMethod.GET)
-	public Car getClientByLicensePlate(@PathVariable("licensePlate") String licensePlate) {
-		return carService.getByLicensePlate(licensePlate);
+	@RequestMapping(value="find/", method = RequestMethod.GET)
+	public List<Car> findByLicensePlate(
+			@RequestParam(name = "licensePlate", required = true) String licensePlate) {
+		return carService.findCarByLicensePlate(licensePlate);
 	}
 	
-	@RequestMapping(value="find/", method=RequestMethod.GET)
-	public List<Car> findCarByLicensePlate(
-			@RequestParam(name = "licensePlate", required = false) String licensePlate) {
-		return carService.findByLicensePlate(licensePlate);
+	@RequestMapping(value="get/", method=RequestMethod.GET)
+	public Car getCar(
+			@RequestParam(name = "id", required = false) String id,
+			@RequestParam(name = "licensePlate", required = false) String licensePlate,
+			@RequestParam(name = "cardNumber", required = false) String cardNumber) {
+		return carService.getCar(id, licensePlate, cardNumber);
 	}
-	
 	
 }

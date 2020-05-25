@@ -10,12 +10,12 @@ import com.carwash.model.Car;
 @Repository
 public interface CarRepository extends CrudRepository<Car, String>, QuerydslPredicateExecutor<Car> {
 
-	List<Car> findByLicensePlateContainingIgnoreCase(String licensePlate);
-	 
-	List<Car> findByCardNumberContaining(String licensePlate);
-	  
-	List<Car> findByLicensePlateOrCardNumberContainingIgnoreCase(String licensePlate, String cardNumber);
+	Car getById(String id);
 	
 	Car getByLicensePlateIgnoreCase(String licensePlate);
+	
+	Car getByCardNumber(String cardNumber);
+	
+	List<Car> findByLicensePlateContainingIgnoreCase(String licensePlate);
 	
 }

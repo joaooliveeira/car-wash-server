@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.carwash.exception.CarWashException;
 import com.carwash.model.Car;
 import com.carwash.model.QCar;
-import com.carwash.model.QWash;
 import com.carwash.repository.CarRepository;
 import com.querydsl.core.BooleanBuilder;
 
@@ -40,12 +38,25 @@ public class CarService {
 		return result;
 	}
 
-	public Car getByLicensePlate(String licensePlate) {
-		return carRepository.getByLicensePlateIgnoreCase(licensePlate);
+	public List<Car> findCarByLicensePlate(String licensePlate) {
+		return carRepository.findByLicensePlateContainingIgnoreCase(licensePlate);
 	}
 
-	public List<Car> findByLicensePlate(String licensePlate) {
-		return carRepository.findByLicensePlateContainingIgnoreCase(licensePlate);
+	public Car getCar(String id, String licensePlate, String cardNumber) {
+		
+		if (id != null && licensePlate == null && cardNumber == null) {
+			return carRepository.getById(id);
+		}
+		
+		if (id == null && licensePlate != null && cardNumber == null) {
+			return carRepository.getByLicensePlateIgnoreCase(licensePlate);
+		}
+		
+		if (id == null && licensePlate == null && cardNumber != null) {
+			return carRepository.getByCardNumber(cardNumber);
+		}
+		
+		return null;
 	}
 	
 }

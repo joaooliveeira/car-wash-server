@@ -1,32 +1,28 @@
 package com.carwash.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
+@Table(name="client")
 @Data
 public class Client {
 	
 	@Id
+	@Column(name = "id")
 	private String id;
 	
-	@Column
+	@Column(name = "name")
 	private String name;
 	
-	@Column
+	@Column(name = "phone")
 	private String phone;
 	
-	@Column
+	@Column(name = "email")
 	private String email;
-	
-	@Enumerated(EnumType.STRING)
-	private ClientStatus status;
 	
 }

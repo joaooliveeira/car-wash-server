@@ -1,6 +1,5 @@
 package com.carwash.ws;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carwash.exception.CarWashException;
 import com.carwash.model.Client;
-import com.carwash.model.Wash;
 import com.carwash.service.ClientService;
 
 @RestController
@@ -33,14 +30,12 @@ public class ClientWs {
 		return clientService.find(term);
 	}
 	
-	@RequestMapping(value = "getByPhone/{phone}", method = RequestMethod.GET)
-	public Client getClientByPhone(@PathVariable("phone") String phone) {
-		return clientService.getByPhone(phone);
-	}
-	
-	@RequestMapping(value = "getByEmail/{email}", method = RequestMethod.GET)
-	public Client getClientByEmail(@PathVariable("email") String email) {
-		return clientService.getByEmail(email);
+	@RequestMapping(value = "get/", method = RequestMethod.GET)
+	public Client getClient(
+			@RequestParam(name = "id", required = false) String id,
+			@RequestParam(name = "phone", required = false) String phone,
+			@RequestParam(name = "email", required = false) String email) {
+		return clientService.getClient(id, phone, email);
 	}
 	
 }

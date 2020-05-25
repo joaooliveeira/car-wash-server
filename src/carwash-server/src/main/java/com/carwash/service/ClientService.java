@@ -1,9 +1,6 @@
 package com.carwash.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +11,9 @@ import com.carwash.model.QClient;
 import com.carwash.repository.ClientRepository;
 import com.querydsl.core.BooleanBuilder;
 
-import lombok.extern.java.Log;
+//import lombok.extern.java.Log;
 
-@Log
+//@Log
 @Service
 public class ClientService {
 	
@@ -24,20 +21,8 @@ public class ClientService {
 	private ClientRepository clientRepository;
 	
 	public Client save(Client client) {
-		log.info("class: ClientService, method: create");
+//		log.info("class: ClientService, method: create");
 		return clientRepository.save(client);
-	}
-	
-	public Client findById(String id) {
-		return clientRepository.findById(id).orElse(null);
-	}
-	
-	public Client getByPhone(String phone) {
-		return clientRepository.getByPhone(phone);
-	}
-	
-	public Client getByEmail(String email) {
-		return clientRepository.getByEmail(email);
 	}
 	
 	public List<Client> find(String term) {
@@ -55,6 +40,36 @@ public class ClientService {
 		clientRepository.findAll(builder).forEach(result::add);
 		
 		return result;
+	}
+	
+	public Client getClient(String id, String phone, String email) {
+		
+		if (id != null && phone == null && email == null) {
+			return clientRepository.getById(id);
+		}
+		
+		if (id == null && phone != null && email == null) {
+			return clientRepository.getByPhone(phone);
+		}
+
+		if (id == null && phone == null && email != null) {
+			return clientRepository.getByEmail(email);
+		}
+		
+		return null;
+	}
+	
+	
+	public Client findById(String id) {
+		return clientRepository.getById(id);
+	}
+	
+	public Client getByPhone(String phone) {
+		return clientRepository.getByPhone(phone);
+	}
+	
+	public Client getByEmail(String email) {
+		return clientRepository.getByEmail(email);
 	}
 	
 }
