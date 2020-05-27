@@ -27,20 +27,16 @@ public class Wash {
 	@JoinColumn(name = "client_id")
 	private Client client;
 	
-	@Column(name = "register")
 	private String clientRegister;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "car_id")
 	private Car car;
 	
-	@Column(name = "kilometrage")
 	private String kilometrage;
 	
-	@Column(name = "type")
 	private String washType;
 	
-	@Column(name = "value")
 	private Long value;
 	
 	@Enumerated(EnumType.STRING)
@@ -48,7 +44,6 @@ public class Wash {
 	
 	private Date created;
 	
-	@Column(name = "authorization")
 	private String authorization;
 	
 }
