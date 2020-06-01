@@ -142,7 +142,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\": \"405bbad0-5e66-11ea-8066-f168752e35mdol\",\n\t\"name\": \"Dolores Teste\",\n\t\"phone\": \"19999887766\",\n\t\"email\": \"ACTIVE\",\n}",
+							"raw": "{\n\t\"id\": \"08eb17d0-99d5-11ea-8c0d-ad21825a0638\",\n\t\"name\": \"Guilherme Teste\",\n\t\"phone\": \"19999887766\",\n\t\"email\": \"joaog.oliveira96@gmail.com\",\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -185,13 +185,29 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}client/getByPhone/19182389234",
+							"raw": "{{host}}client/get/?id=08eb17d0-99d5-11ea-8c0d-ad21825a0638",
 							"host": [
 								"{{host}}client"
 							],
 							"path": [
-								"getByPhone",
-								"19182389234"
+								"get",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "08eb17d0-99d5-11ea-8c0d-ad21825a0638"
+								},
+								{
+									"key": "phone",
+									"value": "19981109364",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "joaog.oliveira96%40gmail.com\n",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -205,6 +221,39 @@
 			"item": [
 				{
 					"name": "wash/save",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"0a3f7020-9eaa-11ea-8708-b958832adde8\"\n\t\"client\": {\n\t\t\"id\": \"08eb17d0-99d5-11ea-8c0d-ad21825a0638\"\n\t\t\"name\": \"Guilherme\"\n\t\t\"phone\": \"19981109364\"\n\t\t\"email\": \"joaog.oliveira96@gmail.com\"\n\t},\n\t\"clientRegister\": \"121212\"\n\t\"car\": {\n\t\t\"id\": \"ab7d3200-9645-11ea-910e-e32faa846721\"\n\t\t\"model\": \"Ferrari\"\n\t\t\"licensePlate\": \"ABC1234\"\n\t\t\"cardNumber\": \"1234567812345678\"\n\t},\n\t\"kilometrage\": \"12364\"\n\t\"washType\": \"Completa\"\n\t\"value\": \"6000\"\n\t\"status\": \"RUNNING\"\n\t\"created\": \"2020-05-23T00:00:00.000-03:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}wash/save",
+							"host": [
+								"{{host}}wash"
+							],
+							"path": [
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wash/delete",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -242,7 +291,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}wash/filter/?fromDate=2020-02-27T00:00:00.000-03:00&toDate=2020-05-25T23:59:59.999-03:00",
+							"raw": "{{host}}wash/filter/?fromDate=2020-05-27T00:00:00.000-03:00&toDate=2020-05-29T23:59:59.999-03:00",
 							"host": [
 								"{{host}}wash"
 							],
@@ -263,11 +312,11 @@
 								},
 								{
 									"key": "fromDate",
-									"value": "2020-02-27T00:00:00.000-03:00"
+									"value": "2020-05-27T00:00:00.000-03:00"
 								},
 								{
 									"key": "toDate",
-									"value": "2020-05-25T23:59:59.999-03:00"
+									"value": "2020-05-29T23:59:59.999-03:00"
 								}
 							]
 						}

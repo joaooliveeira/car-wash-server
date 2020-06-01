@@ -23,13 +23,13 @@ public class Wash {
 	@Column(name = "id")
 	private String id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE })
 	@JoinColumn(name = "client_id")
 	private Client client;
 	
 	private String clientRegister;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE })
 	@JoinColumn(name = "car_id")
 	private Car car;
 	

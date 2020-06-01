@@ -56,5 +56,9 @@ public class WashService {
 	public List<Wash> getRunningWashes() {
 		return washRepository.findByStatus(WashStatus.RUNNING);
 	}
+	
+	public void deleteWash(String id) {
+		washRepository.deleteById(id);
+	}
 
 }

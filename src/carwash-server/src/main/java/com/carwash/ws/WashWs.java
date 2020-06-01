@@ -39,4 +39,10 @@ public class WashWs {
 		return washService.getRunningWashes();
 	}
 	
+	@RequestMapping(value="delete", method=RequestMethod.DELETE)
+	public void deleteWash(
+			@RequestParam(name = "id", required = true) String id) {
+		washService.deleteWash(id);
+	}
+	
 }
