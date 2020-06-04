@@ -2,7 +2,6 @@ package com.carwash.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,13 +22,13 @@ public class Wash {
 	@Column(name = "id")
 	private String id;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE })
+	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
 	
 	private String clientRegister;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE })
+	@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;
 	
