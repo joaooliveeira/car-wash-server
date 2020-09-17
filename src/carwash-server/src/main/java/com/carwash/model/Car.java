@@ -24,5 +24,8 @@ public class Car {
 	
 	@Column(name = "card_number")
 	private String cardNumber;
+	
+	@Column(name = "last_driver_register")
+	private String lastDriverRegister;
 
 }
